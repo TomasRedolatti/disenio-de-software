@@ -5,10 +5,10 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment: 
-      MYSQL_USER: tomas
-      MYSQL_PASSWORD: tomas
+      MYSQL_USER: grupo4
+      MYSQL_PASSWORD: grupo4
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: mysqlDB
+      MYSQL_DATABASE: tpDB
     ports:
       - "3306:3306"
     volumes:
