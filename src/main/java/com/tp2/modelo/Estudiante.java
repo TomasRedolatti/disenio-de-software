@@ -3,26 +3,35 @@ package com.tp2.modelo;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Estudiante {
     @Id
+    @Column(name="LU")
     private Long LU;
-    @Column(unique=true, nullable=false)
+
+    @Column(name="DNI", unique=true, nullable=false)
     private Long dni;
-    @Column(nullable=false)
+
+    @Column(name="NOMBRE", nullable=false)
     private String nombre;
-    @Column(nullable=false)
+
+    @Column(name="APELLIDO", nullable=false)
     private String apellido;
-    @Column(nullable=false)
+
+    @Column(name="FECHA_NACIMIENTO", nullable=false)
     private LocalDate fechaNacimiento;
-    @Column(nullable=false)
+
+    @Column(name="GENERO", nullable=false)
     private Character genero;
-    @Column(nullable=false)
+
+    @Column(name="CIUDAD_RESIDENCIA", nullable=false)
     private String residencia;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante")
     private List<Inscripcion> carreras;
 
     public Estudiante() {
@@ -102,7 +111,8 @@ public class Estudiante {
     }
 
     public void matricular(Carrera c) {
-        new Inscripcion(this, c, LocalDate.now());
+        this.carreras.add(new Inscripcion(this, c, LocalDate.now()));
+
     }
 
     public void setEgresado() {

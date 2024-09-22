@@ -9,9 +9,11 @@ public class Carrera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name="name",unique=true)
+
+    @Column(name="NOMBRE",unique=true)
     private String nombre;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
     private List<Inscripcion> estudiantes;
 
     public Carrera() {

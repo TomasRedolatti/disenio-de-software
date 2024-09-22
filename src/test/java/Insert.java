@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 public class Insert {
 
@@ -28,6 +29,7 @@ public class Insert {
         em.persist(e2);
         em.persist(e3);
         em.persist(e4);
+
         em.persist(c1);
         em.persist(c2);
         em.persist(c3);

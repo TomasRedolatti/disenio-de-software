@@ -6,25 +6,34 @@ import java.time.LocalDate;
 @Entity
 public class Inscripcion {
     @Id
+    @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @JoinColumn(name = "FK_ESTUDIANTE", nullable = false)
     private Estudiante estudiante;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @JoinColumn(name = "FK_CARRERA", nullable = false)
     private Carrera carrera;
-    @Column(nullable = false)
+
+    @Column(name="GRADUADO", nullable = false)
     private Boolean graduado;
-    @Column(nullable = false)
+
+    @Column(name="FECHA_ALTA", nullable = false)
     private LocalDate fechaAlta;
-    @Column(nullable = true)
+
+    @Column(name="FECHA_FIN", nullable = true)
     private LocalDate fechaFin;
 
     public Inscripcion() {
+        super();
+        this.graduado = false;
     }
 
     public Inscripcion(Estudiante estudiante, Carrera carrera, LocalDate fechaAlta) {
+        this();
         this.estudiante = estudiante;
         this.carrera = carrera;
         this.fechaAlta = fechaAlta;
