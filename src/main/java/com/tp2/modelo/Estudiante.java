@@ -3,9 +3,8 @@ package com.tp2.modelo;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Estudiante {
@@ -32,11 +31,11 @@ public class Estudiante {
     private String residencia;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudiante")
-    private List<Inscripcion> carreras;
+    private Set<Inscripcion> carreras;
 
     public Estudiante() {
         super();
-        this.carreras = new ArrayList<>();
+        this.carreras = new HashSet<>();
     }
 
     public Estudiante(Long LU, Long dni, String nombre, String apellido, LocalDate fechaNacimiento, Character genero, String residencia) {
@@ -106,7 +105,7 @@ public class Estudiante {
         return dni;
     }
 
-    public List<Inscripcion> getCarreras() {
+    public Set<Inscripcion> getCarreras() {
         return carreras;
     }
 

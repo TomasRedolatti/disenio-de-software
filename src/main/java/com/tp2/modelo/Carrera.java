@@ -1,8 +1,8 @@
 package com.tp2.modelo;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Carrera {
@@ -14,10 +14,10 @@ public class Carrera {
     private String nombre;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
-    private List<Inscripcion> estudiantes;
+    private Set<Inscripcion> estudiantes;
 
     public Carrera() {
-        this.estudiantes = new ArrayList<>();
+        this.estudiantes = new HashSet<>();
     }
 
     public Carrera(String nombre) {
@@ -33,7 +33,7 @@ public class Carrera {
         this.nombre = nombre;
     }
 
-    public List<Inscripcion> getEstudiantes() {
+    public Set<Inscripcion> getEstudiantes() {
         return estudiantes;
     }
 
