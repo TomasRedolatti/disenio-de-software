@@ -117,4 +117,9 @@ public class Estudiante {
     public void setEgresado() {
         //Vemos si hay que pasar insicripcion o carrera
     }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido + " - LU: "+ LU;
+    }
 }

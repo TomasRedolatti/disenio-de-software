@@ -23,8 +23,6 @@ public class Insert {
         Carrera c2 = new Carrera("Turismo");
         Carrera c3 = new Carrera("Veterinaria");
 
-
-
         em.persist(e1);
         em.persist(e2);
         em.persist(e3);

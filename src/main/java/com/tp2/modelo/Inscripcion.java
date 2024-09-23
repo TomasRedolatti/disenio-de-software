@@ -70,4 +70,11 @@ public class Inscripcion {
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
+
+    @Override
+    public String toString() {
+        return "Inscripcion [ID: " + id +
+                ", Estudiante: " + estudiante +
+                ", Carrera: " + carrera + "]";
+    }
 }

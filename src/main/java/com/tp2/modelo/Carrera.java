@@ -40,4 +40,10 @@ public class Carrera {
     public void addInscripciones(Inscripcion i) {
         this.estudiantes.add(i);
     }
+
+    @Override
+    public String toString() {
+        return nombre +
+                " - ID: " + id;
+    }
 }
