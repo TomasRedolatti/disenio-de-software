@@ -1,4 +1,4 @@
-package com.tp2.modelo;
+package com.tp2.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,6 +37,10 @@ public class Inscripcion {
         this.estudiante = estudiante;
         this.carrera = carrera;
         this.fechaAlta = fechaAlta;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Estudiante getEstudiante() {

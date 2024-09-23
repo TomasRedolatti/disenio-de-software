@@ -1,4 +1,4 @@
-package com.tp2.modelo;
+package com.tp2.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -23,6 +23,10 @@ public class Carrera {
     public Carrera(String nombre) {
         this();
         this.nombre = nombre;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNombre() {

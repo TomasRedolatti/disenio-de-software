@@ -1,11 +1,10 @@
-import com.tp2.modelo.Carrera;
-import com.tp2.modelo.Estudiante;
-import com.tp2.modelo.Inscripcion;
+import com.tp2.entity.Carrera;
+import com.tp2.entity.Estudiante;
+import com.tp2.entity.Inscripcion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

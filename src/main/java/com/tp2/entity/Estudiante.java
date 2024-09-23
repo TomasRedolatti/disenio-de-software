@@ -1,4 +1,4 @@
-package com.tp2.modelo;
+package com.tp2.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

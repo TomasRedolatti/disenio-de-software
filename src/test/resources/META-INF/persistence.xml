@@ -3,9 +3,9 @@
         <description>Utilizado como ejemplo para hacer un primer proyecto basico con Hibernate</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.tp2.modelo.Carrera</class>
-        <class>com.tp2.modelo.Estudiante</class>
-        <class>com.tp2.modelo.Inscripcion</class>
+        <class>com.tp2.entity.Carrera</class>
+        <class>com.tp2.entity.Estudiante</class>
+        <class>com.tp2.entity.Inscripcion</class>
 
         <properties>
             <!-- Propiedades de configruacion de JDBC para MySQL -->

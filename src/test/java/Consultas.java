@@ -1,4 +1,4 @@
-import com.tp2.modelo.Estudiante;
+import com.tp2.entity.Estudiante;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

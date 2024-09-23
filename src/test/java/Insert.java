@@ -1,11 +1,10 @@
-import com.tp2.modelo.Carrera;
-import com.tp2.modelo.Estudiante;
+import com.tp2.entity.Carrera;
+import com.tp2.entity.Estudiante;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
-import java.util.Calendar;
 
 public class Insert {
 
