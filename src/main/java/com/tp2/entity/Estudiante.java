@@ -1,5 +1,7 @@
 package com.tp2.entity;
 
+import com.tp2.Repositories.RepositoryFactory;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -110,8 +112,9 @@ public class Estudiante {
     }
 
     public void matricular(Carrera c) {
-        this.carreras.add(new Inscripcion(this, c, LocalDate.now()));
-
+        Inscripcion i = new Inscripcion(this, c, LocalDate.now());
+        this.carreras.add(i);
+        RepositoryFactory.get_repositorio_estudiante().persist(this);
     }
 
     public void setEgresado() {
