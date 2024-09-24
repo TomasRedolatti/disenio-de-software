@@ -28,22 +28,21 @@ public class InscripcionRepositoryImpl implements BaseRepository<Inscripcion, Lo
     }
 
     @Override
-    public void merge(Inscripcion inscripcion) {
-
-    }
-
-    @Override
     public void delete(Inscripcion inscripcion) {
-
+        RepositoryFactory.getEntity_manager().remove(inscripcion);
     }
 
     @Override
     public List<Inscripcion> findAll() {
-        return List.of();
+        String query = "SELECT i FROM Inscripcion i";
+        return RepositoryFactory.getEntity_manager()
+                .createQuery(query, Inscripcion.class)
+                .getResultList();
     }
 
     @Override
     public Inscripcion findById(Long aLong) {
-        return null;
+        return RepositoryFactory.getEntity_manager()
+                .find(Inscripcion.class, aLong);
     }
 }

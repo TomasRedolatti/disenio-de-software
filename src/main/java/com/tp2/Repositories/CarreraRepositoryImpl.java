@@ -14,8 +14,12 @@ public class CarreraRepositoryImpl implements CarreraRepository {
     }
 
     @Override
-    public List<CarreraRepository> findByName(String name) {
-        return List.of();
+    public Carrera findByName(String name) {
+        String query = "SELECT c FROM Carrera c WHERE c.nome = ?1";
+        return RepositoryFactory.getEntity_manager()
+                .createQuery(query, Carrera.class)
+                .setParameter(1, name)
+                .getSingleResult();
     }
 
     @Override
@@ -34,22 +38,21 @@ public class CarreraRepositoryImpl implements CarreraRepository {
     }
 
     @Override
-    public void merge(Carrera carrera) {
-
-    }
-
-    @Override
     public void delete(Carrera carrera) {
-
+        RepositoryFactory.getEntity_manager().remove(carrera);
     }
 
     @Override
     public List<Carrera> findAll() {
-        return List.of();
+        String query = "SELECT c FROM Carrera c";
+        return RepositoryFactory.getEntity_manager()
+                .createQuery(query, Carrera.class)
+                .getResultList();
     }
 
     @Override
     public Carrera findById(Long aLong) {
-        return null;
+        return RepositoryFactory.getEntity_manager()
+                .find(Carrera.class, aLong);
     }
 }

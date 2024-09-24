@@ -14,7 +14,10 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
     @Override
     public Estudiante findByDNI(Long DNI) {
-
+        String query = "SELECT e FROM Estudiante e WHERE e.dni = ?1";
+        RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
+                .setParameter(1, DNI)
+                .getSingleResult();
         return null;
     }
 
@@ -34,18 +37,14 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
     }
 
     @Override
-    public void merge(Estudiante estudiante) {
-
-    }
-
-    @Override
     public void delete(Estudiante estudiante) {
-
+        RepositoryFactory.getEntity_manager().remove(estudiante);
     }
 
     @Override
     public List<Estudiante> findAll() {
-        return List.of();
+        String query = "SELECT e FROM Estudiante e";
+        return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class).getResultList();
     }
 
     @Override
