@@ -1,7 +1,5 @@
 package com.tp2.entity;
 
-import com.tp2.Repositories.RepositoryFactory;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -27,7 +25,7 @@ public class Estudiante {
     private LocalDate fechaNacimiento;
 
     @Column(name="GENERO", nullable=false)
-    private Character genero;
+    private char genero;
 
     @Column(name="CIUDAD_RESIDENCIA", nullable=false)
     private String residencia;
@@ -40,8 +38,7 @@ public class Estudiante {
         this.carreras = new HashSet<>();
     }
 
-    public Estudiante(Long LU, Long dni, String nombre, String apellido, LocalDate fechaNacimiento, Character genero, String residencia) {
-        this();
+    public Estudiante(Long LU, Long dni, String nombre, String apellido, LocalDate fechaNacimiento, char genero, String residencia) {
         this.LU = LU;
         this.dni = dni;
         this.nombre = nombre;
@@ -79,7 +76,7 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Character getGenero() {
+    public char getGenero() {
         return genero;
     }
 
@@ -109,16 +106,6 @@ public class Estudiante {
 
     public Set<Inscripcion> getCarreras() {
         return carreras;
-    }
-
-    public void matricular(Carrera c) {
-        Inscripcion i = new Inscripcion(this, c, LocalDate.now());
-        this.carreras.add(i);
-        RepositoryFactory.get_repositorio_estudiante().persist(this);
-    }
-
-    public void setEgresado() {
-        //Vemos si hay que pasar insicripcion o carrera
     }
 
     @Override

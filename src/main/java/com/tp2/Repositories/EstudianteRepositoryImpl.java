@@ -24,15 +24,13 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
     @Override
     public Estudiante persist(Estudiante estudiante) {
         RepositoryFactory.getEntity_manager().getTransaction().begin();
-        if (estudiante.getLU() == null) {
+        if (RepositoryFactory.get_repositorio_estudiante().findById(estudiante.getLU()) == null) {
             RepositoryFactory.getEntity_manager().persist(estudiante);
             RepositoryFactory.getEntity_manager().getTransaction().commit();
-            RepositoryFactory.cerrar_conexion();
             return estudiante;
         }
         RepositoryFactory.getEntity_manager().merge(estudiante);
         RepositoryFactory.getEntity_manager().getTransaction().commit();
-        RepositoryFactory.cerrar_conexion();
         return estudiante;
     }
 
