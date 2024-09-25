@@ -1,7 +1,10 @@
 package com.tp2.Repositories;
 
+import com.tp2.entity.Carrera;
 import com.tp2.entity.Estudiante;
+import com.tp2.entity.Inscripcion;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EstudianteRepositoryImpl implements EstudianteRepository {
@@ -66,5 +69,21 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
         return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
                 .setParameter(1, genero)
                 .getResultList();
+    }
+
+    public Inscripcion setGraduado(Estudiante e, Carrera c, LocalDate fecha) {
+        Inscripcion i = (Inscripcion) RepositoryFactory.getEntity_manager()
+                .createQuery("SELECT i FROM Inscripcion i " +
+                        "WHERE i.estudiante = ?1 " +
+                        "AND i.carrera = ?2")
+                .setParameter(1, e)
+                .setParameter(2, c)
+                .getSingleResult();
+
+        i.setGraduado(true);
+        i.setFechaFin(fecha);
+
+        RepositoryFactory.get_repositorio_inscripcion().merge(i);
+        return i;
     }
 }

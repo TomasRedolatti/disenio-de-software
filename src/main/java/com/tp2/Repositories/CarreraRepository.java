@@ -21,4 +21,6 @@ public interface CarreraRepository extends BaseRepository<Carrera, Long> {
     public List<Carrera> carrerasSegunInscriptos();
 
     public List<Estudiante> getEstudiantesByResidencia(String residencia, Carrera c);
+
+    public void getReporteCarreras();
 }

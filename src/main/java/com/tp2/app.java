@@ -23,9 +23,8 @@ public class app {
         Carrera c1 = new Carrera("Ingenieria de Sistemas");
         Carrera c2 = new Carrera("Turismo");
         Carrera c3 = new Carrera("Veterinaria");
-
-
-        //Dar de alta estudiantes
+/*
+    //Dar de alta estudiantes
         Estudiante e;
         e=RepositoryFactory.get_repositorio_estudiante().persist(e1);
         System.out.println(e);
@@ -65,6 +64,7 @@ public class app {
         estudiantes.add(e4);
         Set<Inscripcion> inscripciones = RepositoryFactory.get_repositorio_carrera().matricularEstudiantes(estudiantes, c3);
         inscripciones.forEach(System.out::println);
+ */
 
         //Traer todos los estudiantes ordenados por nombre
         ArrayList<Estudiante> estudiantesOrdenados = new ArrayList<>();
@@ -102,10 +102,20 @@ public class app {
 
         System.out.println("\n");
 
+        //Setear un alumno como egresado
+        Carrera carrera = RepositoryFactory.get_repositorio_carrera().findByName("Veterinaria");
+        Inscripcion i_egresado =
+        RepositoryFactory.get_repositorio_estudiante().setGraduado(e1, carrera, LocalDate.of(2024,9,25));
+        System.out.println(i_egresado);
+        RepositoryFactory.get_repositorio_estudiante().setGraduado(e2, carrera, LocalDate.of(2025,9,25));
+
     /*
         Generar un reporte de las carreras, que para cada carrera incluya info de los inscriptos y egresados por año.
         Se deben ordenar las carreras alfabeticamente y presentar los años cronológicamente
     */
+        RepositoryFactory.get_repositorio_carrera().getReporteCarreras();
+
+        System.out.println("\n");
 
 
         RepositoryFactory.cerrar_conexion();

@@ -79,6 +79,8 @@ public class Inscripcion {
     public String toString() {
         return "Inscripcion [ID: " + id +
                 ", Estudiante: " + estudiante +
-                ", Carrera: " + carrera + "]";
+                ", Carrera: " + carrera +
+                ", graduado:" + this.graduado + "]";
     }
+
 }
