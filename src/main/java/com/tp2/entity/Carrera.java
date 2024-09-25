@@ -8,7 +8,7 @@ import java.util.Set;
 public class Carrera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name="NOMBRE",unique=true)
     private String nombre;
@@ -25,7 +25,7 @@ public class Carrera {
         this.nombre = nombre;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -48,6 +48,7 @@ public class Carrera {
     @Override
     public String toString() {
         return nombre +
-                " - ID: " + id;
+                " - ID: " + id +
+                " - Estudiantes: " + estudiantes.size();
     }
 }

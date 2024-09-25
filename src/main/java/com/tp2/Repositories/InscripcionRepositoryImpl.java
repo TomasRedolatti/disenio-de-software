@@ -15,21 +15,26 @@ public class InscripcionRepositoryImpl implements BaseRepository<Inscripcion, Lo
     @Override
     public Inscripcion persist(Inscripcion inscripcion) {
         RepositoryFactory.getEntity_manager().getTransaction().begin();
-        if (inscripcion.getId() == null) {
-            RepositoryFactory.getEntity_manager().persist(inscripcion);
-            RepositoryFactory.getEntity_manager().getTransaction().commit();
-            RepositoryFactory.cerrar_conexion();
-            return inscripcion;
-        }
-        RepositoryFactory.getEntity_manager().merge(inscripcion);
+        RepositoryFactory.getEntity_manager().persist(inscripcion);
         RepositoryFactory.getEntity_manager().getTransaction().commit();
         RepositoryFactory.cerrar_conexion();
+        return inscripcion;
+
+    }
+
+    @Override
+    public Inscripcion merge(Inscripcion inscripcion) {
+        RepositoryFactory.getEntity_manager().getTransaction().begin();
+        RepositoryFactory.getEntity_manager().merge(inscripcion);
+        RepositoryFactory.getEntity_manager().getTransaction().commit();
         return inscripcion;
     }
 
     @Override
     public void delete(Inscripcion inscripcion) {
+        RepositoryFactory.getEntity_manager().getTransaction().begin();
         RepositoryFactory.getEntity_manager().remove(inscripcion);
+        RepositoryFactory.getEntity_manager().getTransaction().commit();
     }
 
     @Override

@@ -15,28 +15,32 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
     @Override
     public Estudiante findByDNI(Long DNI) {
         String query = "SELECT e FROM Estudiante e WHERE e.dni = ?1";
-        RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
+        return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
                 .setParameter(1, DNI)
                 .getSingleResult();
-        return null;
     }
 
     @Override
     public Estudiante persist(Estudiante estudiante) {
         RepositoryFactory.getEntity_manager().getTransaction().begin();
-        if (RepositoryFactory.get_repositorio_estudiante().findById(estudiante.getLU()) == null) {
-            RepositoryFactory.getEntity_manager().persist(estudiante);
-            RepositoryFactory.getEntity_manager().getTransaction().commit();
-            return estudiante;
-        }
-        RepositoryFactory.getEntity_manager().merge(estudiante);
+        RepositoryFactory.getEntity_manager().persist(estudiante);
         RepositoryFactory.getEntity_manager().getTransaction().commit();
         return estudiante;
     }
 
     @Override
+    public Estudiante merge(Estudiante estudiante) {
+        RepositoryFactory.getEntity_manager().getTransaction().begin();
+        RepositoryFactory.getEntity_manager().merge(estudiante);
+        RepositoryFactory.getEntity_manager().getTransaction().commit();
+        return null;
+    }
+
+    @Override
     public void delete(Estudiante estudiante) {
+        RepositoryFactory.getEntity_manager().getTransaction().begin();
         RepositoryFactory.getEntity_manager().remove(estudiante);
+        RepositoryFactory.getEntity_manager().getTransaction().commit();
     }
 
     @Override
@@ -46,7 +50,21 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
     }
 
     @Override
+    public List<Estudiante> findAllOrderByName() {
+        String query = "SELECT e FROM Estudiante e ORDER BY e.nombre";
+        return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class).getResultList();
+    }
+
+    @Override
     public Estudiante findById(Long LU) {
         return RepositoryFactory.getEntity_manager().find(Estudiante.class, LU);
+    }
+
+    @Override
+    public List<Estudiante> findAllByGenero(Character genero) {
+        String query = "SELECT e FROM Estudiante e WHERE e.genero = ?1";
+        return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
+                .setParameter(1, genero)
+                .getResultList();
     }
 }

@@ -17,4 +17,8 @@ public interface CarreraRepository extends BaseRepository<Carrera, Long> {
     public Inscripcion matricularEstudiante(Estudiante estudiante, Carrera carrera);
 
     public Set<Inscripcion> matricularEstudiantes(List<Estudiante> estudiantes, Carrera carrera);
+
+    public List<Carrera> carrerasSegunInscriptos();
+
+    public List<Estudiante> getEstudiantesByResidencia(String residencia, Carrera c);
 }

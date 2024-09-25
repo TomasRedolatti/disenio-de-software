@@ -6,6 +6,8 @@ import java.util.List;
 public interface BaseRepository<Entity, ID extends Serializable> {
         public Entity persist(Entity entity);
 
+        public Entity merge(Entity entity);
+
         public void delete(Entity entity);
 
         public List<Entity> findAll();

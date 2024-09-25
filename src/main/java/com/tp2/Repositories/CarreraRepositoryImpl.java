@@ -29,15 +29,12 @@ public class CarreraRepositoryImpl implements CarreraRepository {
     @Override
     public Carrera persist(Carrera carrera) {
         RepositoryFactory.getEntity_manager().getTransaction().begin();
-        if (carrera.getId() == null) {
-            RepositoryFactory.getEntity_manager().persist(carrera);
-            RepositoryFactory.getEntity_manager().getTransaction().commit();
-            return carrera;
-        }
-        RepositoryFactory.getEntity_manager().merge(carrera);
+        RepositoryFactory.getEntity_manager().persist(carrera);
         RepositoryFactory.getEntity_manager().getTransaction().commit();
         return carrera;
     }
+
+
 
     @Override
     public void delete(Carrera carrera) {
@@ -53,7 +50,9 @@ public class CarreraRepositoryImpl implements CarreraRepository {
     }
 
     public Carrera merge(Carrera carrera) {
+        RepositoryFactory.getEntity_manager().getTransaction().begin();
         RepositoryFactory.getEntity_manager().merge(carrera);
+        RepositoryFactory.getEntity_manager().getTransaction().commit();
         return carrera;
     }
 
@@ -74,12 +73,33 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 
     @Override
     public Set<Inscripcion> matricularEstudiantes(List<Estudiante> estudiantes, Carrera carrera) {
-        Inscripcion inscripcion;
         for (Estudiante e : estudiantes) {
-            inscripcion = matricularEstudiante(e, carrera);
-            carrera.addInscripciones(inscripcion);
+            matricularEstudiante(e, carrera);
         }
         RepositoryFactory.get_repositorio_carrera().merge(carrera);
         return carrera.getEstudiantes();
+    }
+
+    @Override
+    public List<Carrera> carrerasSegunInscriptos() {
+        String query = "SELECT c " +
+                "FROM Carrera c JOIN c.estudiantes " +
+                "GROUP BY c " +
+                "ORDER BY count(c) DESC";
+        return RepositoryFactory.getEntity_manager().createQuery(query,Carrera.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Estudiante> getEstudiantesByResidencia(String residencia, Carrera carrera) {
+        String query = "SELECT e " +
+                "FROM Estudiante e " +
+                "JOIN e.carreras i " +
+                "WHERE e.residencia = ?1 " +
+                "AND i.carrera = ?2";
+        return RepositoryFactory.getEntity_manager().createQuery(query, Estudiante.class)
+                .setParameter(1, residencia)
+                .setParameter(2, carrera)
+                .getResultList();
     }
 }
